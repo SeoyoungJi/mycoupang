@@ -1,13 +1,208 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/layout">
 <meta charset="UTF-8">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> 
-<title>Insert title here</title>
-</head>
-<body>
-main
-</body>
+
+<div layout:fragment="content">
+	
+	<style type="text/css">
+	
+	#coupang_Carousel {
+		margin: -17px 0 17px 0;
+	}
+	
+	.carouselImg {
+		width: 100%;
+		height: 100%;
+	}
+	
+	.container {
+		display: grid;
+		justify-items: stretch;
+	}
+
+	#hotDiv {
+		margin: 0 auto; 
+		padding: 15px 0 23px 0;
+		width: 1030px;
+		display: block;
+	}
+
+	#mainContainer {
+		margin: 0 auto;
+		border: solid 1px #d6d6d6;
+		width: 1030px;
+	}
+	
+	
+	#productListBox {
+		padding: 7px;
+	}
+
+	.productList {
+		border: solid 1px #d6d6d6;
+		width: 100%;
+	}
+	
+	#bottomContainer {
+		margin: 0 auto;
+		width: 1030px;
+		margin-bottom: 80px;
+	}
+	
+	#bottomTitle {
+		margin: 40px 0 10px 5px;
+	}
+	
+	.x_product {
+		width: 95%;
+		margin-bottom: 10px;
+	}
+	
+	.freeFont {
+		color: #888888;
+	}
+	
+	
+</style>
+
+	<script type="text/javascript">
+
+	$(function(){
+	
+		$('#coupang_Carousel').carousel({
+			interval: 2000,
+			pause: "hover",
+			wrap: true //순환
+		});
+		
+		
+		
+	});
+
+	
+	</script>	
+
+	<div id="coupang_Carousel" class="carousel slide" data-ride="carousel">
+	
+		<ol class="carousel-indicators">
+			<li data-target="#coupang_Carousel" data-slide-to="0" class="active"></li>
+			<li data-target="#coupang_Carousel" data-slide-to="1"></li>
+			<li data-target="#coupang_Carousel" data-slide-to="3"></li>
+			<li data-target="#coupang_Carousel" data-slide-to="4"></li>
+		</ol>
+
+	
+	    <div class="carousel-inner" role="listbox" style="width:100%;">
+			 <div class="carousel-item active" style="width:100%; height:430px; cursor:pointer;">
+			    <img src="img/carousel/carousel1.jpg" class="carouselImg">
+			</div>
+			
+			<div class="carousel-item" style="width:100%; height:430px; cursor:pointer;">
+			  <img src="img/carousel/carousel2.jpg" class="carouselImg">
+			</div>
+			
+			<div class="carousel-item" style="width:100%; height:430px; cursor:pointer;">
+			  <img src="img/carousel/carousel3.jpg" class="carouselImg">
+			  </div>
+				
+			<div class="carousel-item" style="width:100%; height:430px; cursor:pointer;">
+			  <img src="img/carousel/carousel4.jpg" class="carouselImg">
+			  </div>
+		</div>
+
+		<a class="carousel-control-prev" href="#coupang_Carousel" role="button"
+			data-slide="prev"> <span class="carousel-control-prev-icon"
+			aria-hidden="true"></span> <span class="sr-only">Previous</span>
+		</a> <a class="carousel-control-next" href="#coupang_Carousel"
+			role="button" data-slide="next"> <span
+			class="carousel-control-next-icon" aria-hidden="true"></span> <span
+			class="sr-only">Next</span>
+		</a>
+	</div><!-- coupang_Carousel -->
+
+	<div id="hotDiv" class="container">
+		<span style="font-size: 17pt; font-weight:550;">오늘의 발견</span>
+		<span style="font-size: 11pt; font-weight:550;">&nbsp;|&nbsp;&nbsp;오늘 쿠팡이 엄선한 가장 HOT한 상품!</span>
+	</div>
+
+	<div id="mainContainer" class="container">		
+
+		<div class="row" id="productListBox">
+				<div class="col productList">
+					<img src="img/product/b_product1.jpg" />
+				</div>
+				<div class="col productList">
+					<img src="img/product/b_product2.JPG" />
+				</div>
+		</div>
+		
+		<div class="row" id="productListBox">
+				<div class="col productList">
+					<img src="img/product/s_product1.jpg" height="100%" width="100%" />
+				</div>
+				<div class="col productList">
+					<img src="img/product/s_product2.JPG" height="100%" width="100%" />
+				</div>
+				<div class="col productList">
+					<img src="img/product/s_product1.jpg" height="100%" width="100%" />
+				</div>
+				<div class="col productList">
+					<img src="img/product/s_product2.JPG" height="100%" width="100%" />
+				</div>
+		</div>
+		
+		<div class="row" id="productListBox">
+				<div class="col-6 productList">
+					<img src="img/product/b_product3.JPG" />
+				</div>
+				<div class="col-3 productList">
+					<img src="img/product/s_product1.jpg" height="100%" width="100%" />
+				</div>
+				<div class="col-3 productList">
+					<img src="img/product/s_product2.JPG" height="100%" width="100%" />
+				</div>
+				
+		</div>
+	</div><!-- mainContainer -->
+	
+	<div id="bottomContainer">
+		<div id="bottomTitle">
+			<img src="img/icon/shopIcon.JPG" style="padding-bottom: 10px;"/>
+			<span style="font-size: 19pt; font-weight: bold;">오늘의 쇼핑 제안</span>
+		</div>
+		
+		<div id="bottomList" class="row">
+			<div class="col productList2">
+			 	<img src="img/product/x_product1.JPG" class="x_product"/>
+			 	<span class="freeTitle">로티세리 에어프라이어 오븐</span><br/>
+			 	<span class="freeFont">무료배송</span>
+			</div>
+			<div class="col productList2">
+			 	<img src="img/product/x_product2.JPG" class="x_product"/>
+			 	<span class="freeTitle">로얄제리 500mg 60정</span><br/>
+			 	<span class="freeFont">무료배송</span>
+			</div>
+			<div class="col productList2">
+			 	<img src="img/product/x_product1.JPG" class="x_product"/>
+			 	<span class="freeTitle">로티세리 에어프라이어 오븐</span><br/>
+			 	<span class="freeFont">무료배송</span>
+			</div>
+			<div class="col productList2">
+			 	<img src="img/product/x_product2.JPG" class="x_product"/>
+			 	<span class="freeTitle">로얄제리 500mg 60정</span><br/>
+			 	<span class="freeFont">무료배송</span>
+			</div>
+			<div class="col productList2">
+			 	<img src="img/product/x_product1.JPG" class="x_product"/>
+			 	<span class="freeTitle">로티세리 에어프라이어 오븐</span><br/>
+			 	<span class="freeFont">무료배송</span>
+			</div>
+		</div>
+	</div>
+	
+</div>
+
 </html>

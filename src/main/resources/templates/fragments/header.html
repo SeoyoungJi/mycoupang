@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+
+	<div th:fragment="headerFragment"> 
+		<div id="topContainer">
+			<div id="menubar">
+				<div class="menubar_both" id="menubar_left">
+					<ul>
+						<li>즐겨찾기</li>
+						<li>입점신청</li>
+					</ul>
+				</div>
+
+				<div class="menubar_both" id="menubar_right">
+					<ul>
+						<li><a href="login">로그인</a></li>
+						<li><a href="register">회원가입</a></li>
+						<li>고객센터</li>
+					</ul>
+				</div>
+			</div>
+			<!-- menubar -->
+		</div>
+		<!-- topContainer -->
+
+		<div id="headerContainer" class="coupangContainer">
+			<div id="categoryDiv">
+				<img src="img/icon/category.JPG" height="115px" width="110px" />
+			</div>
+
+			<div style="height: 80%; display: block;">
+				<div id="logoDiv">
+					<img src="img/mycoupangLOGO.JPG" height="55px" width="174px" onclick="location.href='main'"/>
+				</div>
+
+				<div id="searchDiv">
+					<div id="selectBox">
+						<select style="border: none;">
+							<option>전체</option>
+							<option>여성패션</option>
+							<option>남성패션</option>
+						</select>
+					</div>
+					<input type="text" placeholder="찾고 싶은 상품을 검색해보세요!" id="searchInput" /><i
+						class="fa fa-search" id="searchIcon"></i>
+				</div>
+
+				<div class="iconDiv">
+					<i class="fa fa-shopping-cart fa2"></i> <span class="iconText">장바구니</span>
+				</div>
+
+				<div class="iconDiv">
+					<i class="fa fa-user fa2"></i> <span class="iconText">마이쿠팡</span>
+				</div>
+			</div>
+
+			<div id="categoryBar">
+				<ul>
+					<li><a href="#"><img src="img/icon/rocket1.JPG"
+							height="20px" width="20px" />로켓배송</a></li>
+					<li><a href="#"><img src="img/icon/rocket2.JPG"
+							height="20px" width="20px" />로켓프레시</a></li>
+					<li><a href="#">로켓직구</a></li>
+					<li><a href="#">골드박스</a></li>
+					<li><a href="#">정기배송</a></li>
+					<li><a href="#">이벤트/쿠폰</a></li>
+					<li><a href="#">기획전</a></li>
+					<li><a href="#">여행/티켓</a></li>
+				</ul>
+
+			</div>
+		</div>
+		<!-- headerContainer -->
+	</div>
+
+</html>

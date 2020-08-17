@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/layout">
+<meta charset="UTF-8">
+
+<div layout:fragment="content">
+
+<style type="text/css">
+
+	#product_nav {
+		margin-bottom: 18px;
+		color: #333;
+		font-size: 8pt;
+	}
+	
+	#productTitle {
+		border-bottom: solid 0.8px #d6d6d6;
+	}
+	
+	#productPrice {
+		border-bottom: solid 0.5px #d6d6d6;
+		padding-top: 10px;
+	}
+	
+	#price {
+		color: #ae0000;
+		font-size: 18pt;
+	}
+	
+	#likeIcon {
+		cursor: pointer;
+	}
+	
+	#cash {
+		box-sizing: border-box;
+	    padding: 1px 8px 17px 8px;
+	    height: 20px;
+	    border-radius: 10px;
+	    border: solid 1px #ccc;
+	    font-size: 8.8pt;
+	    width: fit-content;
+	    margin: 8px 0 15px 6px;
+	}
+
+	#cashIcon {
+		padding-bottom: 3px;
+		width: 19px;
+	}
+	
+	#productDelivery {
+		border-bottom: solid 0.5px #d6d6d6;
+		margin-bottom: 17px;
+		padding: 15px 0 17px 0;
+	}
+	
+	#date {
+		display: inline-block;
+		font-weight: bold;
+    	color: #00891a;
+    	font-size: 14px
+	}
+	
+	#location {
+		color: black;
+		display: inline-block;
+		font-size: 10pt;
+	}
+	
+	#fake_select {
+		width: 100%;
+		height: 50px;
+		font-size: 10pt;
+    	padding-left: 5px;
+	}
+	
+	#productCount {
+		width: 90px; 
+		height: 41px;
+		text-align: center;
+	}
+	
+	#cartBtn{
+	    border: 1px solid #346aff;
+	    color: #346aff;
+	    background: white;
+	    font-weight: bold;
+	    font-size: 13pt;
+	    width: 220px;
+	    height: 41px;
+	    margin-left: 3px;
+	}
+	
+	#buyBtn {
+		width: 220px;
+	    height: 42px;
+	    background: #346aff;
+	    color: #fff;
+	    text-align: center;
+	    font-weight: bold;
+	    font-size: 16px;
+	    border: 1px solid #346aff;
+	    margin-left: -10px;
+	}
+	
+	#productList {
+		margin: 17px 0;
+   		margin-left: -20px;
+   		font-size: 9pt;
+	}
+	
+	#scrollDiv {
+		margin-top: 40px;
+	    height: 50px;
+	    font-size: 13pt;
+	    color: #555;
+	    font-weight: bold;
+	    padding-top: 10px;
+	    text-align: center;
+	    /* border-top: 2.4px solid black;
+	    border-left: 1px solid #ccc;
+	    border-right: 1px solid #ccc; */
+	}
+
+	#navDiv {
+		width: 1000px;
+		height: 51px;
+		border-top: 2.4px solid black;
+		border-left: 1px solid #ccc;
+	    border-right: 1px solid #ccc;
+		cursor: pointer;
+	}
+	
+	.tabMenu {
+		background: #fafafa;		
+	    
+	}
+	
+	.tabMenu.active {
+		background: white;
+		border-bottom: none;
+	}
+	
+	#infoDiv {
+		margin: 25px 0 20px -10px;
+	}
+	
+	#infoTitle {
+		font-size: 10pt;
+		margin-left: 5px;
+		font-weight: bold;
+	}
+	
+	#infoTbl {
+		margin-top: 11px;
+		font-size: 10pt;
+		border-bottom: 1px solid #dee2e6;
+	}
+		
+	th {
+		font-weight: normal;
+		background: #f8f9fa;
+		width: 20%;
+	}
+	
+	#likeDiv {
+		margin-top: 55px;
+	}
+	
+	#likeTitle {
+		font-size: 14px;
+   		font-weight: bold;
+   		color: black;
+	}
+	
+	#vs {
+		font-size: 32px;
+   		font-weight: bold;
+   		margin: 10px 8px;
+	}
+	
+	#deliveryInfoDiv {
+		margin: 45px 0 50px 0;
+	}
+	
+</style>
+<script type="text/javascript">
+
+$('#scrollDiv').scrollspy({ target: '.navbar' }
+
+
+</script>
+
+	<hr style="border:solid 1px #d6d6d6; margin-top: -18px;">
+
+	<div class="coupangContainer" style="padding:5px 15px 15px 15px">
+		<div id="product_nav" >
+			<nav>
+				쿠팡 홈  > 싱글라이프  > 세제/화장지  > 화장지  > 고급롤화장지(3겹이상)
+			</nav>
+		</div>
+		
+		<div class="container">
+			<div class="row">
+				<div class="col-5">
+					<img src="img/product/1_sum_product.JPG" width="95%" height="95%"/>
+				</div>
+				
+				<div class="col-7">
+					<div id="productTitle">
+						<span style="font-size: 9pt; color: #346aff;">깨끗한 나라</span><br/>
+						<span style="font-size: 14pt; font-weight: bold; display: inline-block; width: 380px;">깨끗한나라 3겹 데코 순수 프리미엄 천연펄프 롤화장지 30m</span><br/>
+						<span style="font-size: 8pt; color: #346aff">100개의 상품평</span>
+						<img src="img/icon/likeIcon.JPG" class="likeIcon"/>
+						<img src="img/icon/dislikeIcon.png" class="likeIcon"/>
+					</div>
+					
+					<div id="productPrice">
+						<strong><span th:text="${#numbers.formatInteger('16100',3,'COMMA')}" id="price"></span>원</strong>
+						<img src="img/icon/rocketIcon.JPG"/>
+						<div id="cash" th:with="cash=${#numbers.formatInteger(16100 * 0.05,3,'COMMA')}">						
+							<img src="img/icon/cashIcon.jpg" id="cashIcon"/>
+							최대 <span th:text="${cash}"></span>원 적립
+						</div>
+					</div>
+					
+					<div id="productDelivery">
+						<span style="font-size:10pt; display: block;"><strong>무료배송</strong>&nbsp;(로켓배송 상품 19,800원 이상 구매 시)</span>
+						<p id="date"><strong>내일 <span th:text="${#dates.format(#dates.createNow(), 'MM/dd')}"></span></strong> 도착 보장</p>
+						<p id="location">서울⋅경기 기준</p>
+						
+						<select id="fake_select"><option>개당 수량X수량</option></select>
+					</div>
+					
+					<div id="productButton">
+						<div class="row">
+							<div class="col-2">
+								<input type="number" value="1" id="productCount" min="1" max="100"/>
+							</div>
+							
+							<div class="col-5">
+								<button id="cartBtn">장바구니 담기</button>
+							</div>
+							
+							<div class="col-5">
+								<button id="buyBtn">바로 구매 ></button>
+							</div>
+						</div>
+					</div>
+					
+					<div id="productList">
+						<ul>
+							<li>품명 및 모델명 : </li>
+							<li>인증사항 : </li>
+							<li>제조국(원산지) : </li>
+						</ul>
+					</div>
+					
+				</div>
+			</div><!-- 상단정보 -->
+			
+			<!-- 스크롤스파이 -->
+			<div id="scrollDiv">
+					<div class="nav nav-tabs row" id="navDiv">
+						<div id="tab1" class="col-3 tabMenu nav-link active" data-toggle="tab"><span>상품상세</span></div>
+					    <div id="tab2" class="col-3 tabMenu nav-link" data-toggle="tab"><span>상품평</span></div>
+					    <div id="tab3" class="col-3 tabMenu nav-link" data-toggle="tab"><span>상품문의</span></div>
+					    <div id="tab4" class="col-3 tabMenu nav-link" data-toggle="tab"><span>배송/교환/반품 안내</span></div>
+				    </div>
+			</div>
+			
+			<div id="infoDiv">
+				<p id="infoTitle">필수 표기정보</p>
+					<table id="infoTbl" class="table">
+						<tr>
+							<th>품명 및 모델명</th>
+							<td>깨끗한 나라 화장지</td>
+							<th>인증사항</th>
+							<td>업체 미제공</td>
+						</tr>
+						<tr>
+							<th>제조국(원산지)</th>
+							<td>대한민국</td>
+							<th>제조사(수입자)</th>
+							<td>깨끗한나라</td>
+						</tr>
+						<tr>
+							<th>소비자상담 관련 전화번호</th>
+							<td colspan="3">쿠팡/1577-7011</td>
+						</tr>
+					</table>
+			</div>
+			
+			<div id="detailImgDiv">
+				<img src="img/product/1_detail_product.jpg" width="100%"/>
+			</div>
+			
+			<div id="likeDiv">
+				<p id="likeTitle">좋아요/싫어요</p>
+				<div style="width: 200px;text-align: center;margin-left: 400px;">
+					<img src="img/icon/likeIcon.JPG" width="50px"/>
+					<span id="vs">vs</span>
+					<img src="img/icon/dislikeIcon.png" width="50px"/>
+				</div>	
+			</div>
+			
+			<div id="deliveryInfoDiv">
+				<img src="img/etc/deliveryInfo.JPG"/>
+			</div>			
+		</div>
+	</div><!-- coupangContainer -->

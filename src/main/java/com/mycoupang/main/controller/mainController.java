@@ -12,9 +12,10 @@ public class mainController {
 		return "main";
 	}
 	
-	@RequestMapping(value = "/header" )
-	public String header() {
+	@RequestMapping(value = {"/product"} )
+	public String product() {
 		
-		return "header";
+		return "product";
 	}
-}
+	
+} 

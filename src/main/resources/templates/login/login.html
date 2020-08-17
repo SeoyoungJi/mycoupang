@@ -20,6 +20,10 @@
 		padding-top: 10%;
 	}
 	
+	#logo {
+		cursor: pointer;
+	}
+	
 	.loginInputDiv {
 		border: 1px solid #ccc;
 		margin-top: 10px;
@@ -92,13 +96,17 @@
 		color: #555;
 	}
 	
+	input:focus {
+		outline: none;
+	}
+	
 </style>
 
 </head>
 <body>
 	<div id="mainContainer" align="center">
 		<div id="logoDiv">
-			<img src="img/mycoupangLOGO.JPG" width="220px" height="68px"/>
+			<img src="img/mycoupangLOGO.JPG" width="220px" height="68px" onclick="location.href='main'" id="logo"/>
 		</div>
 		
 		<div id="loginDiv">
@@ -114,7 +122,7 @@
 		</div>
 		
 		<div id="checkDiv">
-			<span style="float:left"><input type="checkbox" id="loginCheck"/>자동로그인</span>
+			<span style="float:left"><input type="checkbox" id="loginCheck"/><label for="loginCheck">자동로그인</label></span>
 			<span style="float:right"><a href="#">아이디(이메일)/비밀번호 찾기&nbsp;<b>></b></a></span>
 		</div>
 		
@@ -123,7 +131,7 @@
 			
 			<hr style="margin: 17px 0">
 		
-			<button id="registerBtn" class="btn">회원가입</button>
+			<button id="registerBtn" class="btn" onclick="location.href='register'">회원가입</button>
 		</div>
 		
 		<footer id="login_footer">©Coupang Corp. All rights reserved.</footer>

@@ -22,6 +22,10 @@
 		padding-top: 10%;
 	}
 	
+	#logo {
+		cursor: pointer;
+	}
+	
 	.loginInputDiv {
 		border: 1px solid #ccc;
 		margin-top: 14px;
@@ -57,6 +61,14 @@
 		vertical-align: middle;
 		position: relative;
 		top: 7px;
+		color: #757575;
+	}
+	
+	.genderCheck {
+		position: relative;
+		top: 10px;
+		left: 2px;
+	
 	}
 	
 	#interestDiv {
@@ -83,12 +95,14 @@
 	}
 	
 	.interestBtn {
-		margin: 3px 8px;
-		background-color: black;
-		color: white;
+		margin: 7px 5px;
+		padding: 4px;
+		width: 95%;
+		color: black;
 		text-align: center;
 		font-size: 11pt;
 		border: none;
+		cursor: pointer;
 	}
 	
 	#buttonDiv {
@@ -110,17 +124,22 @@
 		font-size: 16pt;
 	}
 	
-	#confirmDiv > span {
+	#confirmDiv {
 		font-size: 10pt;
 		text-align: left;
 	}
 	
 	#login_footer {
-		margin-top: 18px;
+		margin: 18px 0 100px 0;
 		font-size: 10pt;
 		text-align: center;
 		color: #555;
 	}
+	
+	input:focus, button:focus {
+		outline: none;	
+	}
+	
 	
 </style>
 
@@ -128,7 +147,7 @@
 <body>
 	<div id="mainContainer" class="container-fluid" align="center">
 		<div id="logoDiv">
-			<img src="img/mycoupangLOGO.JPG" width="240px" height="70px"/>
+			<img src="img/mycoupangLOGO.JPG" width="240px" height="70px" onclick="location.href='main'" id="logo"/>
 		</div>
 		
 		<div id="loginDiv">
@@ -154,8 +173,10 @@
 			
 			<div id="genderDiv" class="loginInputDiv">
 				<span class="iconBox" style="position: relative; top:4px; left:-131px;"><i class="fas fa-heart material-icons2"></i></span>
-				<span style="position: relative; top:-3px; left:-132px;"><label for="woman" class="radioText">여자</label><input type="radio" name="gender" value="F" id="woman" required/>
-				<label for="man" class="radioText">남자</label><input type="radio" name="gender" value="M" id="man"/></span>
+				<span style="position: relative; top:-3px; left:-132px;">
+					<label for="woman" class="radioText">여자</label><input type="radio" name="gender" value="F" id="woman" checked class="genderCheck"/>
+					<label for="man" class="radioText">남자</label><input type="radio" name="gender" value="M" id="man" class="genderCheck"/>
+				</span>
 			</div>
 			
 			
@@ -176,13 +197,13 @@
 			
 			<div id="interestDiv">
 				<table id="interestTB">
-					<tr><th id="interestTH">관심분야 (최대 10개까지 선택)</th></tr>
+					<tr><th id="interestTH" colspan="2">관심분야 (최대 10개까지 선택)</th></tr>
 					<tr>
-						<th><button class="interestBtn">전체선택</button>
-						<button class="interestBtn">선택취소</button></th>
+						<th colspan="1"><button class="interestBtn">전체선택</button></th>
+						<th colspan="1"><button class="interestBtn">선택취소</button></th>
 					</tr>
 					<tr>
-						<td style="padding-top:9px;">
+						<td style="padding-top:9px; width:100%;" colspan="2">
 							<input type="checkbox" class="interestBox" value="1" id="1"/><label for="1">패션의류/잡화</label>
 							<input type="checkbox" class="interestBox" value="2" id="2"/><label for="2">뷰티</label>
 							<input type="checkbox" class="interestBox" value="3" id="3"/><label for="3">식품</label>
@@ -191,7 +212,7 @@
 					</tr>
 					
 					<tr>
-						<td>
+						<td colspan="2">
 							<input type="checkbox" class="interestBox" value="5" id="5"/><label for="5">생활용품</label>
 							<input type="checkbox" class="interestBox" value="6" id="6"/><label for="6">홈인테리어</label>
 							<input type="checkbox" class="interestBox" value="7" id="7"/><label for="7">가전디지털</label>	
@@ -199,7 +220,7 @@
 					</tr>
 					
 					<tr>
-						<td>				
+						<td colspan="2">				
 							<input type="checkbox" class="interestBox" value="8" id="8"/><label for="8">완구/취미</label>
 							<input type="checkbox" class="interestBox" value="9" id="9"/><label for="9">반려동물용품</label>
 							<input type="checkbox" class="interestBox" value="10" id="10"/><label for="10">여행/티켓</label>		

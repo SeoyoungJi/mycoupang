@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+body {
+		min-width: 1000px;
+	}
+
+.coupangContainer {
+	margin: 0 auto;
+	width: 1030px;
+	
+}
+
+#topContainer {
+	background: #F0F0F0;
+	height: 32px;
+}
+
+#menubar {
+	margin: 0 auto;
+	width: 980px;
+	overflow:hidden;
+}
+
+
+.menubar_both > ul > li{
+	font-size: 10pt;
+	list-style: none;
+	display: inline-block;		
+	margin: 6px 7px;	
+}
+
+#menubar_left {
+	float: left;	
+	margin-left: -28px;	
+}
+
+#menubar_right {
+	float: right;
+	margin-right: 10px;
+}
+
+
+#categoryDiv {		
+	width: 12%;
+	float: left;
+}
+
+#logoDiv {
+	display: inline;
+	width: 20%;
+	float: left;
+	margin: 20px 0 0 10px;
+}
+
+#searchDiv {
+	border: solid 2px #4da6ff;
+	margin: 33px 10px 0 0;
+	height: 40px;
+	float: left;
+	width: 51%;
+}
+
+#selectBox {
+	border: none;
+	border-right: solid 1px #ddd;
+	width: 20%; 
+	float: left;
+	margin-top: 7px;
+}
+
+#searchInput {
+	border: none;	
+	height: 100%;
+	width: 65%;
+	float: left;
+	margin-left: 7px;
+}
+
+input:focus {
+	outline:none;
+}
+
+#searchIcon {
+	color: #4da6ff; 
+	font-size: 20px;
+	margin: 7px 10px 0 0;
+	float: right;
+}
+
+.iconDiv {
+	margin: 25px 1px;
+	width: 7%;
+	float: right;
+}
+
+.iconText {
+	display: block;
+	font-size: 10pt;
+	text-align: center;
+}
+
+.fa2 {
+	font-size: 25pt;
+	margin-left: 23px;
+	text-align: center;
+}
+
+.fa-shopping {
+	padding-right: 4px;
+}
+
+#categoryBar {
+	height:15%; 
+	display: inline-block;
+	margin-top: 10px;
+	margin-left: -27px;
+	overflow: hidden;
+}
+
+#categoryBar > ul > li {
+	list-style: none;
+	display: inline;
+	margin-right: 14px;	
+	font-size: 10pt;
+	
+}
+
+#categoryBar > ul > li > a {
+	text-decoration: none;
+	color: black;
+}
+
+
+a:link, a:visited, a:hover {
+	text-decoration: none;
+	color: #212529;
+}
+
+#footer1 > ul > li{
+	font-size: 10pt;
+	list-style: none;
+	display: inline-block;		
+	margin: 4px 7px;	
+}
+
+#footer1 {
+	border-bottom: #ddd solid 1px;
+	text-align: center;
+}
+
+#footer2 {
+	background: #333;
+  		height: 80px;
+  		color: #888;
+  		font-size: 9pt;
+  		text-align: left;
+  		padding: 20px 0 80px 520px; 
+}
