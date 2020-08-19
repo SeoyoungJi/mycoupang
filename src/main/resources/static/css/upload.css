@@ -1,0 +1,81 @@
+@charset "UTF-8";
+
+#mainContainer {
+		margin: 0 auto;
+	    max-width: 1600px;
+	    min-width: 1000px;
+		
+}
+
+#logoDiv {
+	padding: 40px 0 0 40px;
+}
+
+#logo {
+	cursor: pointer;
+}
+
+input:focus {
+	outline: none;		
+}
+
+input {
+	border: none;
+}
+
+.red {
+	color: red
+}
+
+#titleDiv {
+	font-size: 17pt;
+	font-weight: bold;
+	padding: 20px 0 0 38px;
+}
+
+#tableDiv {
+	padding: 20px 35px;
+	margin-bottom: 20px;
+}
+
+.table th {
+	text-align: right;
+	padding-right: 20px;
+	width: 250px;
+	background: #f8f9fa;
+}
+
+.table td {
+	padding-left: 18px;
+}
+
+.radioCheck {
+	margin: 4px 6px 0 0;
+}
+
+.radioLabel {
+	margin-right: 25px;
+}
+
+#registerBtn{
+    border: 1px solid #346aff;
+    color: #346aff;
+    background: white;
+    font-weight: bold;
+    font-size: 13pt;
+    width: 100%;
+    height: 49px;
+    margin-left: 3px;
+}
+
+#cancelBtn {
+	width: 100%;
+    height: 49px;
+    background: #346aff;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border: 1px solid #346aff;
+    margin-left: -10px;
+}

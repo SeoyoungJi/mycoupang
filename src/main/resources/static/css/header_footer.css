@@ -39,6 +39,9 @@ body {
 	margin-right: 10px;
 }
 
+.hicon {
+	font-size: 30pt !important;
+}
 
 #categoryDiv {		
 	width: 12%;
@@ -50,6 +53,10 @@ body {
 	width: 20%;
 	float: left;
 	margin: 20px 0 0 10px;
+}
+
+#logo {
+	cursor: pointer;
 }
 
 #searchDiv {

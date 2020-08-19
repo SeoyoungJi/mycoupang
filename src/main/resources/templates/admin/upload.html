@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/upload.css" />
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> 
+<title>상품 등록</title>
+
+</head>
+<body>
+	<div id="mainContainer" class="container">
+	
+		<!-- 헤더 -->
+		<div class="row">
+			<div class="3" id="logoDiv">
+				<img src="img/mycoupangLOGO.JPG" width="220px" height="68px" onclick="location.href='main'" id="logo"/>
+			</div>	
+		</div>
+		
+		<hr style="border: solid 2px #459dbf">
+	
+		<!-- 타이틀 -->
+		<div class="row">
+			<div class="3" id="titleDiv">
+				상품등록
+			</div>	
+		</div>
+		
+		<!-- 등록 표 -->
+		<div class="row" id="tableDiv">
+			<table class="table table-bordered">
+				<tr>
+					<th><span class="red">* </span>분류</th>
+					<td>
+						<select>
+							<option value="1">패션의류/잡화</option>
+							<option value="2">뷰티</option>
+							<option value="3">식품</option>
+							<option value="4">주방용품</option>
+							<option value="5">생활용품</option>
+							<option value="6">홈인테리어</option>
+							<option value="7">가전디지털</option>
+							<option value="8">완구/취미</option>
+							<option value="9">반려동물용품</option>
+							<option value="10">여행/티켓</option>
+						</select>
+					
+					</td>
+				</tr>			
+				
+				<tr>
+					<th>브랜드</th>
+					<td><input type="text" class="borderNone"/></td>
+				</tr>		
+				
+				<tr>
+					<th><span class="red">* </span>제품명</th>
+					<td><input type="text" class="borderNone"/></td>
+				</tr>
+				
+				<tr>
+					<th><span class="red">* </span>가격</th>
+					<td><input type="text" class="borderNone"/></td>
+				</tr>				
+									
+				<tr>
+					<th><span class="red">* </span>판매자</th>
+					<td><input type="text" class="borderNone"/></td>
+				</tr>
+				
+				<tr>
+					<th><span class="red">* </span>택배사</th>
+					<td>
+						<label class="radioLabel"><input type="radio" value="0" class="radioCheck" checked/>쿠팡</label>
+						<label class="radioLabel"><input type="radio" value="1" class="radioCheck"/>우체국</label>
+						<label class="radioLabel"><input type="radio" value="2" class="radioCheck"/>대한통운</label>
+						<label class="radioLabel"><input type="radio" value="3" class="radioCheck"/>로젠택배</label>
+						<label class="radioLabel"><input type="radio" value="4" class="radioCheck"/>한진택배</label>
+					</td>
+				</tr>
+				
+				<tr>
+					<th>상품 이미지1</th>
+					<td></td>
+				</tr>
+				
+				<tr>
+					<th>상품 이미지2</th>
+					<td></td>
+				</tr>
+			
+			</table>
+		</div>
+
+		<div id="btnDiv">
+			<div class="row justify-content-center">
+				<div class="col-2">
+					<button id="registerBtn">등록</button>
+				</div>
+				<div class="col-2">
+					<button id="cancelBtn" onclick="location.href='main'">취소</button>
+				</div>			
+			</div>
+		</div>
+	</div>
+	</body>
+</html>

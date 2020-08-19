@@ -15,7 +15,13 @@ public class mainController {
 	@RequestMapping(value = {"/product"} )
 	public String product() {
 		
-		return "product";
+		return "product/product";
+	}
+	
+	@RequestMapping(value = {"/upload"} )
+	public String upload() {
+		
+		return "admin/upload";
 	}
 	
 } 
