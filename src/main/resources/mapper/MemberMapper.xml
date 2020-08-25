@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycoupang.mapper.MemberMapper">
+
+<insert id="registerUser" parameterType="com.mycoupang.member.model.MemberVO">
+	insert into tb_user(USERID, USERPW, USERNAME, GENDER, ADDR1, ADDR2, HP, EMAIL, INTEREST)
+	values (#{userid}, #{userpw}, #{username}, #{gender}, #{addr1}, #{addr2}, #{hp} , #{INTEREST})
+</insert>
+
+</mapper>
