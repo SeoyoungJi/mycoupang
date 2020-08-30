@@ -8,4 +8,8 @@
 	values (#{userid}, #{userpw}, #{username}, #{gender}, #{addr1}, #{addr2}, #{hp} , #{INTEREST})
 </insert>
 
+<select id="idCheck" parameterType="com.mycoupang.member.model.MemberVO" resultType="Integer">
+	select count(*) from tb_user where userid = #{userid}
+</select>
+
 </mapper>

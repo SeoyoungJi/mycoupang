@@ -8,4 +8,6 @@ import com.mycoupang.member.model.MemberVO;
 public interface MemberMapper {
 	
 	void registerUser (MemberVO user);
+	
+	int idCheck (MemberVO user);
 }

@@ -13,12 +13,12 @@ public class MemberVO {
 	private String email;
 	private String registerday;
 	private Integer active;
+	private String role;
 	
 	public MemberVO() { }
 	
 	public MemberVO(Integer userno, String userid, String userpw, String username, String gender, String addr1,
-			String addr2, String hp, String email, String registerday, Integer active) {
-		super();
+			String addr2, String hp, String email, String registerday, Integer active, String role) {
 		this.userno = userno;
 		this.userid = userid;
 		this.userpw = userpw;
@@ -30,8 +30,10 @@ public class MemberVO {
 		this.email = email;
 		this.registerday = registerday;
 		this.active = active;
+		this.role = role;
 	}
 	
+
 	public Integer getUserno() {
 		return userno;
 	}
@@ -97,6 +99,12 @@ public class MemberVO {
 	}
 	public void setActive(Integer active) {
 		this.active = active;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 	

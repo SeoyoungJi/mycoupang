@@ -9,8 +9,168 @@
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> 
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-<title>로그인</title>
+<title>회원가입</title>
+<script type="text/javascript">
 
+	var idCheck = false;
+	var pwCheck = false;
+	var checkboxCheck = false;
+	
+	$(function(){
+
+		$("span.hide").css('display','none');
+		$("#pwCheck").attr("disabled", true);
+		
+		
+		/* 비밀번호 유효성 검사 */		
+		$("#userpw").blur(function(){
+	
+			var regExp = /^[!@#$%^*+=-][A-Za-z0-9]{8,12}$/;
+			var bool = regExp.test($(this).val());
+			
+			if(bool != true){
+				$("#error_pw").css('display','');
+				$(this).val(""); 
+				$(this).focus();
+			}
+			else {
+				$("#error_pw").css('display','none');
+				$("input#pwCheck").attr("disabled", false);
+				$("input#pwCheck").focus();
+			}
+			
+		});
+		
+		
+		/* 비밀번호 일치 검사 */
+		$("#pwCheck").blur(function(){
+			if($("#userpw").val() != $("#pwCheck").val()){
+				$("#error_pw2").css('display','');
+				$("#success_pw2").css('display','none');
+				pwCheck = false;
+			} 
+			else {
+				$("#error_pw2").css('display','none');
+				$("#success_pw2").css('display','');
+				pwCheck = true;
+			}
+		});
+		
+		
+		/* 전체선택 */
+		$("#allCheck").click(function(){		
+			var bool = $("input:checkbox").prop("checked", true);
+		});
+		
+		
+		/* 전체취소 */
+		$("#cancelCheck").click(function(){		
+			var bool = $("input:checkbox").prop("checked", false);
+		});
+	});
+	
+	
+	/* ID 중복검사 */
+	function goCheckID(){
+		
+		if($("#userid").val() == ""){
+			alert("ID를 입력하세요");
+			$("#userid").focus();
+			return;
+		}
+		else {
+			$.ajax({
+				url: "idCheck",
+				data : {"userid" : $("#userid").val()},
+				dataType: "json",
+				type: "POST",
+				success: function(data){
+					console.log(data.cnt)
+					if(data == 0){
+						$("#success_id").css('display','');
+						$("#error_id").css('display','none');
+						idCheck = true;
+					}
+					else{
+						$("#error_id").css('display','');
+						$("#success_id").css('display','none');
+						idCheck = false;
+						$("#userid").focus();
+					}
+				},
+				error : function(error){
+					alert("error : "+error);
+				}
+			});			
+		}		
+	}
+	
+	function goRegister(){
+		
+			var regiterform = document.regiterForm;
+			var username = $("#username").val().trim();
+			var email = $("#email").val().trim();
+			var addr = $("#addr").val().trim();
+			var hp = $("#hp").val().trim();
+			var cnt = 0;
+			
+			var interestArr = document.getElementsByName("interest");
+	        for(var i=0; i<interestArr.length; i++){
+	            if(interestArr[i].checked) {
+	            	cnt += 1;
+	            }            
+	        }
+	       
+			if(username == ""){
+				alert("이름을 입력하세요.");
+				$("#userName").focus();
+				return;
+			}
+			if(idCheck == false){
+				alert("아이디 중복확인을 진행해주세요.");
+				$("#userid").focus();
+				return;
+			}
+			if(pwCheck == false){
+				alert("비밀번호를 다시 확인해주세요.");
+				$("#pwCheck").focus();
+				return;
+			}
+			
+			if($("#email").val() == ""){
+				alert("이메일 주소를 입력해주세요.");
+				$("#email").focus();
+				return;
+			}
+					
+			if(!/^[a-z0-9_+.-]+@([a-z0-9-]+\.)+[a-z0-9]{2,4}$/.test($("#email").val())){
+				alert('이메일 형식이 올바르지 않습니다.');
+				$("#email").focus();
+				return;
+			}
+			
+			if(hp == ""){
+				alert("휴대폰 번호를 입력해주세요.");
+				$("#hp").focus();
+				return;
+			}
+							
+			if(addr == ""){
+				alert("주소를 입력해주세요.");
+				$("#addr").focus();
+				return;
+			}
+				    
+			if(cnt == 0){
+		        alert("관심분야를 1개 이상 선택해주세요.");
+		        return;
+		    }
+		        
+			
+			registerForm.submit();
+		}
+	
+</script>
 
 </head>
 <body>
@@ -19,25 +179,42 @@
 			<img src="img/mycoupangLOGO.JPG" width="240px" height="70px" onclick="location.href='main'" id="logo"/>
 		</div>
 		
+		<form id="registerForm" name="registerForm" method="POST">
 		<div id="loginDiv">
 			<div id="idDiv" class="loginInputDiv">
 				<span class="iconBox"><i class="material-icons" style="font-size:20pt; top:8px;">mail_outline</i></span>
-				<span><input type="text" placeholder="아이디" class="loginInput"/></span>
+				<span><input type="text" id="userid" name="userid" placeholder="아이디" class="loginInput" style="width:67%"/>
+					  <input id="checkId" onclick="goCheckID();" type="button" value="중복확인"/></span>			
+			</div>
+			
+			<div>
+				<span class="hide" id="error_id">이미 사용 중인 아이디입니다.</span>
+				<span class="hide" id="success_id">사용 가능한 아이디입니다.</span>
 			</div>
 		
 			<div id="pwDiv" class="loginInputDiv">
 				<span class="iconBox"><i class="material-icons">lock_outline</i></span>
-				<span><input type="password" placeholder="비밀번호" class="loginInput"/></span>
+				<span><input type="password" name="userpw" id="userpw" placeholder="비밀번호" class="loginInput"/></span>
+			</div>
+			
+			<div>
+				<span class="notice">*특수문자로 시작하고 연속되지 않은 숫자+영문 조합의 8~12글자</span><br/>
+				<span class="hide" id="error_pw">비밀번호 형식이 일치하지 않습니다.</span>
 			</div>
 			
 			<div id="pwDiv2" class="loginInputDiv">
 				<span class="iconBox"><i class="material-icons">lock_outline</i></span>
-				<span><input type="password" placeholder="비밀번호 확인" class="loginInput"/></span>
+				<span><input type="password" id="pwCheck" placeholder="비밀번호 확인" class="loginInput"/></span>
+			</div>
+			
+			<div>
+				<span class="hide" id="error_pw2">비밀번호가 일치하지 않습니다.</span>
+				<span class="hide" id="success_pw2">비밀번호가 일치합니다.</span>
 			</div>
 			
 			<div id="nameDiv" class="loginInputDiv">
 				<span class="iconBox"><i class='far fa-user material-icons2'></i></span>
-				<span><input type="text" placeholder="이름" class="loginInput"/></span>
+				<span><input type="text" id="username" name="username" placeholder="이름" class="loginInput"/></span>
 			</div>
 			
 			<div id="genderDiv" class="loginInputDiv">
@@ -51,48 +228,48 @@
 			
 			<div id="phoneDiv" class="loginInputDiv">
 				<span class="iconBox"><i class="fa fa-mobile-phone material-icons2"></i></span>
-				<span><input type="text" placeholder="휴대폰 번호" class="loginInput"/></span>
+				<span><input type="text" id="hp" name="hp" placeholder="휴대폰 번호" class="loginInput"/></span>
 			</div>
 			
 			<div id="emailDiv" class="loginInputDiv">
 				<span class="iconBox"><i class="material-icons" style="font-size:20pt; top:8px;">mail_outline</i></span>
-				<span><input type="email" placeholder="이메일" class="loginInput"/></span>
+				<span><input type="email" id="email" name="email" placeholder="이메일" class="loginInput"/></span>
 			</div>
 			
 			<div id="addressDiv" class="loginInputDiv">
 				<span class="iconBox"><i class="fas fa-heart material-icons2"></i></span>
-				<span><input type="text" placeholder="주소" class="loginInput"/></span>
+				<span><input type="text" id="addr" name="addr" placeholder="주소" class="loginInput"/></span>
 			</div>
 			
 			<div id="interestDiv">
 				<table id="interestTB">
 					<tr><th id="interestTH" colspan="2">관심분야 (최대 10개까지 선택)</th></tr>
 					<tr>
-						<th colspan="1"><button class="interestBtn">전체선택</button></th>
-						<th colspan="1"><button class="interestBtn">선택취소</button></th>
+						<th colspan="1"><input type="button" class="interestBtn" id="allCheck" value="전체선택"/></th>
+						<th colspan="1"><input type="button" class="interestBtn" id="cancelCheck" value="선택취소"/></th>
 					</tr>
 					<tr>
-						<td style="padding-top:9px; width:100%;" colspan="2">
-							<input type="checkbox" class="interestBox" value="1" id="1"/><label for="1">패션의류/잡화</label>
-							<input type="checkbox" class="interestBox" value="2" id="2"/><label for="2">뷰티</label>
-							<input type="checkbox" class="interestBox" value="3" id="3"/><label for="3">식품</label>
-							<input type="checkbox" class="interestBox" value="4" id="4"/><label for="4">주방용품</label>							
+						<td style="padding-top:9px; padding-left: 28px; width:100%;" colspan="2">
+							<input type="checkbox" class="interstBox" value="1" id="1" name="interest"/><label for="1">패션의류/잡화</label>
+							<input type="checkbox" class="interestBox" value="2" id="2" name="interest"/><label for="2">뷰티</label>
+							<input type="checkbox" class="interestBox" value="3" id="3" name="interest"/><label for="3">식품</label>
+							<input type="checkbox" class="interestBox" value="4" id="4" name="interest"/><label for="4">주방용품</label>							
 						</td>
 					</tr>
 					
 					<tr>
-						<td colspan="2">
-							<input type="checkbox" class="interestBox" value="5" id="5"/><label for="5">생활용품</label>
-							<input type="checkbox" class="interestBox" value="6" id="6"/><label for="6">홈인테리어</label>
-							<input type="checkbox" class="interestBox" value="7" id="7"/><label for="7">가전디지털</label>	
+						<td colspan="2" style="padding-left:13px;">
+							<input type="checkbox" class="interestBox" value="5" id="5" name="interest"/><label for="5">생활용품</label>
+							<input type="checkbox" class="interestBox" value="6" id="6" name="interest"/><label for="6">홈인테리어</label>
+							<input type="checkbox" class="interestBox" value="7" id="7" name="interest"/><label for="7">가전디지털</label>	
 						</td>
 					</tr>
 					
 					<tr>
-						<td colspan="2">				
-							<input type="checkbox" class="interestBox" value="8" id="8"/><label for="8">완구/취미</label>
-							<input type="checkbox" class="interestBox" value="9" id="9"/><label for="9">반려동물용품</label>
-							<input type="checkbox" class="interestBox" value="10" id="10"/><label for="10">여행/티켓</label>		
+						<td colspan="2" style="padding-left:13px;">				
+							<input type="checkbox" class="interestBox" value="8" id="8" name="interest"/><label for="8">완구/취미</label>
+							<input type="checkbox" class="interestBox" value="9" id="9" name="interest"/><label for="9">반려동물용품</label>
+							<input type="checkbox" class="interestBox" value="10" id="10" name="interest"/><label for="10">여행/티켓</label>		
 						</td>
 					</tr>
 				
@@ -101,8 +278,10 @@
 		</div>
 		
 		<div id="buttonDiv">
-			<button id="goRegisterBtn" class="btn">동의하고 가입하기</button>			
-		</div>		
+			<input id="goRegisterBtn" type="button" class="btn" onclick="goRegister();" value="동의하고 가입하기"/>	
+		</div>	
+		
+		</form>	
 		
 		<div id="confirmDiv">
 			<span>본인은 <b>만 14세 이상</b>이며, 쿠팡 이용약관, 전자금융거래이용약관, 개인정보 수집 및 이용, 개인정보 제공 내용을 확인하였고 이에 <b>동의합니다.</b></span>

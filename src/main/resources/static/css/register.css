@@ -127,3 +127,52 @@
 	input:focus, button:focus {
 		outline: none;	
 	}
+	
+	.notice {
+		font-size: 9pt;
+		color: #d39e00;
+		font-weight: bold;
+		text-align: left;
+		margin-left: -90px;
+	}
+
+	.hide {
+		font-size: 9pt;
+		font-weight: bold;
+		text-align: left;
+	}
+	
+	#error_id {	
+		color: red;
+		margin-left: -280px;
+	}
+	
+	#error_pw {	
+		color: red;
+		margin-left: -183pt;
+	}
+	
+	#error_pw2 {	
+		color: red;
+		margin-left: -200pt;
+	}
+	
+	#success_id {	
+		color: #0062cc;
+		margin-left: -290px;
+	}
+	
+	#success_pw2 {	
+		color: #0062cc;
+		margin-left: -308px;
+	}
+	
+	#checkId {
+		background: #ffc107;
+	    color: white;
+	    font-weight: bold;
+	    border: none;
+	    font-size: 11pt;
+	    padding: 2pt 5pt;
+	    width: 17%;
+	}
