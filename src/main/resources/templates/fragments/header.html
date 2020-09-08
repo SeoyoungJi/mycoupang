@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 
 	<div th:fragment="headerFragment"> 
@@ -7,15 +7,17 @@
 			<div id="menubar">
 				<div class="menubar_both" id="menubar_left">
 					<ul>
-						<li>즐겨찾기</li>
+						<li onclick="{window.external.AddFavorite('http://localhost:9090/mycoupang/main', '마이쿠팡')}">즐겨찾기</li>
 						<li>입점신청</li>
 					</ul>
 				</div>
 
 				<div class="menubar_both" id="menubar_right">
 					<ul>
-						<li><a href="login">로그인</a></li>
-						<li><a href="register">회원가입</a></li>
+						<li sec:authorize="isAnonymous()"><a href="login">로그인</a></li>
+						<li sec:authorize="isAnonymous()"><a href="register">회원가입</a></li>
+						<li sec:authorize="isAuthenticated()"><a href="/mycoupang/logout">로그아웃</a></li>
+						<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="">관리자</a></li>
 						<li>고객센터</li>
 					</ul>
 				</div>
@@ -26,7 +28,7 @@
 
 		<div id="headerContainer" class="coupangContainer">
 			<div id="categoryDiv">
-				<img src="img/icon/category.JPG" height="115px" width="110px" id="logo"/>
+				<img src="img/icon/category.JPG" height="115px" width="110px" id="logo" style="cursor:pointer;"/>
 			</div>
 
 			<div style="height: 80%; display: block;">

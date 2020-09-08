@@ -2,12 +2,15 @@ package com.mycoupang.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.mycoupang.member.model.MemberVO;
+import com.mycoupang.model.MemberVO;
 
 @Mapper
 public interface MemberMapper {
 	
-	void registerUser (MemberVO user);
+	void register (MemberVO member);
 	
-	int idCheck (MemberVO user);
+	int idCheck (MemberVO member);
+	
+	MemberVO findMember (String userid);
+	
 }

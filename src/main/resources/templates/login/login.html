@@ -9,6 +9,42 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script> 
 <title>로그인</title>
 
+<script type="text/javascript">
+
+$(document).ready(function(){
+	
+
+});	
+
+	function enter(){
+		var keyCode = window.event.keyCode;
+		if(keyCode == 13){
+			goLogin();
+		}
+	}
+
+	function goLogin(){		
+				
+		var loginForm = document.loginForm;
+		var userid = $("#userid").val().trim();
+		var userpw = $("#userpw").val().trim();
+		
+		if(userid == ""){
+			alert("아이디를 입력해주세요.");
+			$("#userid").focus();
+		}
+		else if(userpw == ""){
+			alert("비밀번호를 입력해주세요.");
+			$("#userpw").focus();
+		}
+		else {
+			loginForm.submit();
+		}
+		
+	}
+
+</script>
+
 </head>
 <body>
 	<div id="mainContainer" align="center">
@@ -16,31 +52,33 @@
 			<img src="img/mycoupangLOGO.JPG" width="220px" height="68px" onclick="location.href='main'" id="logo"/>
 		</div>
 		
-		<div id="loginDiv">
-			<div id="idDiv" class="loginInputDiv">
-				<span class="iconBox"><i class="material-icons" style="">mail_outline</i></span>
-				<span><input type="text" placeholder="아이디(이메일)" class="loginInput"/></span>
-			</div>
-		
-			<div id="pwDiv" class="loginInputDiv">
-				<span class="iconBox"><i class="material-icons">lock_outline</i></span>
-				<span><input type="text" placeholder="비밀번호" class="loginInput"/></span>
-			</div>
-		</div>
-		
-		<div id="checkDiv">
-			<span style="float:left"><input type="checkbox" id="loginCheck"/><label for="loginCheck">자동로그인</label></span>
-			<span style="float:right"><a href="#">아이디(이메일)/비밀번호 찾기&nbsp;<b>></b></a></span>
-		</div>
-		
-		<div id="buttonDiv">
-			<button id="loginBtn" class="btn">로그인</button>
+		<form th:action="@{/login}" id="loginForm" name="loginForm" method="post">
+			<div id="loginDiv">
+				<div id="idDiv" class="loginInputDiv">
+					<span class="iconBox"><i class="material-icons" style="">mail_outline</i></span>
+					<span><input type="text" name="userid" id="userid" placeholder="아이디" class="loginInput" onkeyup="enter();"/></span>
+				</div>
 			
-			<hr style="margin: 17px 0">
+				<div id="pwDiv" class="loginInputDiv">
+					<span class="iconBox"><i class="material-icons">lock_outline</i></span>
+					<span><input type="password" name="userpw" id="userpw" placeholder="비밀번호" class="loginInput" onkeyup="enter();"/></span>
+				</div>
+			</div>
 		
-			<button id="registerBtn" class="btn" onclick="location.href='register'">회원가입</button>
-		</div>
 		
+			<div id="checkDiv">
+				<span style="float:left"><input type="checkbox" id="loginCheck"/><label for="loginCheck">자동로그인</label></span>
+				<span style="float:right"><a href="#">아이디(이메일)/비밀번호 찾기&nbsp;<b>></b></a></span>
+			</div>
+			
+			<div id="buttonDiv">
+				<input type="button" id="loginBtn" class="btn" value="로그인" onclick="goLogin()"/>
+				
+				<hr style="margin: 17px 0">
+			
+				<button type="button" id="registerBtn" class="btn" onclick="location.href='register'">회원가입</button>
+			</div>
+		</form>
 		<footer id="login_footer">©Coupang Corp. All rights reserved.</footer>
 	</div>
 </body>

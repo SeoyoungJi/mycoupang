@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorator="layout/layout">
+      layout:decorator="~{layouts/layout}">
 <meta charset="UTF-8">
 
 <div layout:fragment="content">
@@ -172,7 +172,7 @@
 </style>
 <script type="text/javascript">
 
-$('#scrollDiv').scrollspy({ target: '.navbar' }
+$('#scrollDiv').scrollspy({ target: '.navbar' });
 
 
 </script>
@@ -252,43 +252,45 @@ $('#scrollDiv').scrollspy({ target: '.navbar' }
 			</div><!-- 상단정보 -->
 			
 			<!-- 스크롤스파이 -->
-			<div id="scrollDiv">
-					<div class="nav nav-tabs row" id="navDiv">
-						<div id="tab1" class="col-3 tabMenu nav-link active" data-toggle="tab"><span>상품상세</span></div>
-					    <div id="tab2" class="col-3 tabMenu nav-link" data-toggle="tab"><span>상품평</span></div>
-					    <div id="tab3" class="col-3 tabMenu nav-link" data-toggle="tab"><span>상품문의</span></div>
-					    <div id="tab4" class="col-3 tabMenu nav-link" data-toggle="tab"><span>배송/교환/반품 안내</span></div>
-				    </div>
-			</div>
-			
-			<div id="infoDiv">
-				<p id="infoTitle">필수 표기정보</p>
-					<table id="infoTbl" class="table">
-						<tr>
-							<th>품명 및 모델명</th>
-							<td>깨끗한 나라 화장지</td>
-							<th>인증사항</th>
-							<td>업체 미제공</td>
-						</tr>
-						<tr>
-							<th>제조국(원산지)</th>
-							<td>대한민국</td>
-							<th>제조사(수입자)</th>
-							<td>깨끗한나라</td>
-						</tr>
-						<tr>
-							<th>소비자상담 관련 전화번호</th>
-							<td colspan="3">쿠팡/1577-7011</td>
-						</tr>
-					</table>
-			</div>
-			
-			<div id="detailImgDiv">
-				<img src="img/product/1_detail_product.jpg" width="100%"/>
-			</div>
-			
-			<div id="deliveryInfoDiv">
-				<img src="img/etc/deliveryInfo.JPG"/>
+			<div data-spy="scroll" data-target=".navbar" fixed-top>
+				<div id="scrollDiv">
+						<div class="nav nav-tabs row" id="navDiv">
+							<div id="tab1" class="col-3 tabMenu nav-link active" data-toggle="tab" onclick="location.href='#infoDiv'"><span>상품상세</span></div>
+						    <div id="tab2" class="col-3 tabMenu nav-link" data-toggle="tab" ><span>상품평</span></div>
+						    <div id="tab3" class="col-3 tabMenu nav-link" data-toggle="tab" onclick="location.href='#detailImgDiv'"><span>배송정보</span></div>
+						    <div id="tab4" class="col-3 tabMenu nav-link" data-toggle="tab" onclick="location.href='#deliveryInfoDiv'"><span>교환/반품 안내</span></div>
+					    </div>
+				</div>
+				
+				<div id="infoDiv">
+					<p id="infoTitle">필수 표기정보</p>
+						<table id="infoTbl" class="table">
+							<tr>
+								<th>품명 및 모델명</th>
+								<td>깨끗한 나라 화장지</td>
+								<th>인증사항</th>
+								<td>업체 미제공</td>
+							</tr>
+							<tr>
+								<th>제조국(원산지)</th>
+								<td>대한민국</td>
+								<th>제조사(수입자)</th>
+								<td>깨끗한나라</td>
+							</tr>
+							<tr>
+								<th>소비자상담 관련 전화번호</th>
+								<td colspan="3">쿠팡/1577-7011</td>
+							</tr>
+						</table>
+				</div>
+				
+				<div id="detailImgDiv">
+					<img src="img/product/1_detail_product.jpg" width="100%"/>
+				</div>
+				
+				<div id="deliveryInfoDiv">
+					<img src="img/etc/deliveryInfo.JPG"/>
+				</div>
 			</div>			
 		</div>
 	</div><!-- coupangContainer -->

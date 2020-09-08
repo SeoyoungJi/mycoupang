@@ -3,13 +3,17 @@
 
 <mapper namespace="com.mycoupang.mapper.MemberMapper">
 
-<insert id="registerUser" parameterType="com.mycoupang.member.model.MemberVO">
-	insert into tb_user(USERID, USERPW, USERNAME, GENDER, ADDR1, ADDR2, HP, EMAIL, INTEREST)
-	values (#{userid}, #{userpw}, #{username}, #{gender}, #{addr1}, #{addr2}, #{hp} , #{INTEREST})
+<insert id="register" parameterType="MemberVO">
+	insert into tb_user (USERNO, USERID, USERPW, NAME, GENDER, ADDR, HP, EMAIL, REGISTERDAY, INTEREST, ACTIVE, ROLE)
+	values (DEFAULT, #{userid}, #{userpw}, #{name}, #{gender}, #{addr}, #{hp}, #{email}, DEFAULT, #{interest}, DEFAULT, DEFAULT)
 </insert>
 
-<select id="idCheck" parameterType="com.mycoupang.member.model.MemberVO" resultType="Integer">
+<select id="idCheck" parameterType="MemberVO" resultType="java.lang.Integer">
 	select count(*) from tb_user where userid = #{userid}
+</select>
+
+<select id="findMember" parameterType="java.lang.String" resultType="MemberVO">
+	select * from tb_user where userid = #{userid}
 </select>
 
 </mapper>
