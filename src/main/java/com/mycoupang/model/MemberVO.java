@@ -1,6 +1,6 @@
 package com.mycoupang.model;
 
-public class MemberVO {
+public class MemberVO{
 	
 	private String userno;
 	private String userid;
@@ -32,80 +32,103 @@ public class MemberVO {
 		this.active = active;
 		this.role = role;
 	}
-	
+    
 	public String getUserno() {
 		return userno;
 	}
+
 	public void setUserno(String userno) {
 		this.userno = userno;
 	}
-	public String getUserid() {
-		return userid;
-	}
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
+   
 	public String getUserpw() {
 		return userpw;
 	}
+
 	public void setUserpw(String userpw) {
 		this.userpw = userpw;
 	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	public String getGender() {
 		return gender;
 	}
+
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
 	public String getAddr() {
 		return addr;
 	}
+
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
+
 	public String getHp() {
 		return hp;
 	}
+
 	public void setHp(String hp) {
 		this.hp = hp;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
-		this.email = email;		
+		this.email = email;
 	}
+
 	public String getInterest() {
 		return interest;
 	}
+
 	public void setInterest(String interest) {
 		this.interest = interest;
 	}
+
 	public String getRegisterday() {
 		return registerday;
 	}
+
 	public void setRegisterday(String registerday) {
 		this.registerday = registerday;
 	}
+
 	public int getActive() {
 		return active;
 	}
+
 	public void setActive(int active) {
 		this.active = active;
 	}
+
 	public String getRole() {
 		return role;
 	}
+
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getUserid() {
+		return userid;
+	}
+
+	public void setUserid(String userid) {
+		this.userid = userid;
+	}
+    
 	
  
 }

@@ -48,7 +48,7 @@ public class MemberController {
 	}
 	
 	//로그인 처리
-	@GetMapping("/loginEnd")
+	@PostMapping("/login")
 	public String login() {
 		
 		return "/main";

@@ -1,5 +1,6 @@
 package com.mycoupang.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -7,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -24,22 +26,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 	
+//	@Autowired
+//	private CustomAuthenticationProvider provider;
+	
+	//filter 설정
 	@Override
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/css/**", "/js/**", "/img/**");
     }
 	 
+	//http관련 보안 설정
 	 @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http.authorizeRequests()
 	                // 권한 적용
 	           //     .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
 	                .antMatchers("/**").permitAll()
+	                .antMatchers("/login").permitAll()
 	                
 	             .and() // 로그인
 	                .formLogin()
-	                .loginPage("/login")
-	                .defaultSuccessUrl("/loginEnd", true)
+	                .loginPage("/login") //로그인 페이지
+	                .loginProcessingUrl("/login")
+	                .defaultSuccessUrl("/") //로그인 완료시
 	                .usernameParameter("userid")
 	                .passwordParameter("userpw")
 	                .permitAll()
@@ -53,8 +62,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                .clearAuthentication(true)   //권한 삭제
 	                
 	            .and()
-	                .exceptionHandling().accessDeniedPage("/login");
-	        
+	                .exceptionHandling().accessDeniedPage("/login");	        	        
 	    }
  
 	
@@ -62,7 +70,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	  @Override 
 	  public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		  auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
+		//  auth.authenticationProvider(provider);
+		 
 	  }
-	 
-	 
+	  
+ 
 }

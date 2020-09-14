@@ -1,7 +1,6 @@
 package com.mycoupang.security;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
 
 @AllArgsConstructor
 public enum Role {
