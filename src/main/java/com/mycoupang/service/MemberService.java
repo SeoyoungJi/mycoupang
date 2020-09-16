@@ -23,13 +23,11 @@ import com.mycoupang.security.Role;
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
-public class MemberService implements InterMemberService{
+public class MemberService implements UserDetailsService{
 
 	@Autowired
 	MemberMapper MemberMapper;
 	
-	@Override
 	public int idCheck(MemberVO member) {	
 		int check = MemberMapper.idCheck(member);	
 		System.out.println("service:"+check); 
@@ -50,15 +48,12 @@ public class MemberService implements InterMemberService{
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
 		
 		MemberVO member = MemberMapper.findMember(userid);
-		
-		
 	//	System.out.println("active: "+member.getActive());
 	//	System.out.println("userid: "+userid);
 		
 		if( member.getActive() == 0 ) { throw new UsernameNotFoundException("이메일 인증 후 로그인이 가능합니다."); }	
 		if( member.getUserid() == null ) { throw new UsernameNotFoundException("로그인 실패"); }
-		if( member.getUserpw() == null ) { throw new UsernameNotFoundException("로그인 실패"); }
-			
+		/*
 	  	List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 	 
 		if(("admin").equals(userid)) {
@@ -68,14 +63,14 @@ public class MemberService implements InterMemberService{
 			authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
 		}
 		
-		authorities.add(new SimpleGrantedAuthority(member.getRole()));
 		return new User(member.getUserid(), member.getUserpw(), authorities); //SpringSecurity에서 제공하는 UserDetails를 구현한 User를 반환
+			 
+		*/
 		
-	//	 GrantedAuthority authority = new SimpleGrantedAuthority(member.getRole());
-	//	 UserDetails userDetails = (UserDetails)new User(userid, member.getUserpw(), Arrays.asList(authority));
-	//	 return userDetails;
-		
-		
+		 GrantedAuthority authority = new SimpleGrantedAuthority(Role.ADMIN.getValue());
+		 UserDetails userDetails = (UserDetails)new User(userid, member.getUserpw(), Arrays.asList(authority));
+		 
+		 return userDetails;
 	}
 
 	

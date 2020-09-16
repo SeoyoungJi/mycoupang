@@ -60,4 +60,11 @@ public class MemberController {
 		
 		return "/main";
 	}
+	
+	//인증메일 폼 테스트
+	@GetMapping("/mail")
+	public String mail() {
+		
+		return "/mail";
+	}
 }

@@ -116,6 +116,7 @@
 			var hp = $("#hp").val().trim();
 			var cnt = 0;
 			
+			//체크박스 체크 확인용
 			var interestArr = document.getElementsByName("interest");
 	        for(var i=0; i<interestArr.length; i++){
 	            if(interestArr[i].checked) {
@@ -172,6 +173,14 @@
 		        return;
 		    }
 		        
+			
+			//관심분야 체크박스 배열로
+			var interestArr = new Array();
+			var interestCnt = 0;
+			
+			$("input[name=interest]:checked").each(function(i) {
+				interestArr.push($(this).val());
+		    });
 			
 			registerform.submit();
 		}

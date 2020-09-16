@@ -15,6 +15,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import com.mycoupang.service.MemberService;
 
+import lombok.AllArgsConstructor;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -26,8 +28,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 	
-//	@Autowired
-//	private CustomAuthenticationProvider provider;
 	
 	//filter 설정
 	@Override
@@ -65,14 +65,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	                .exceptionHandling().accessDeniedPage("/login");	        	        
 	    }
  
-	
+	/*
 	  // 인증을 위한 AuthenticationManager생성을 위해
 	  @Override 
 	  public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		  auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());
-		//  auth.authenticationProvider(provider);
-		 
+		  auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());		
 	  }
-	  
- 
+	 */
+	 
 }
