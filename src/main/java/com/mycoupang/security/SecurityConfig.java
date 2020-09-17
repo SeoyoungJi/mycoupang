@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,6 +20,7 @@ import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	private MemberService memberService;
@@ -27,6 +29,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+	
 	
 	
 	//filter 설정
@@ -40,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http.authorizeRequests()
 	                // 권한 적용
-	           //     .antMatchers("/admin/**").hasRole("ROLE_ADMIN")
+	                .antMatchers("/upload").hasAnyAuthority("ROLE_ADMIN")
 	                .antMatchers("/**").permitAll()
 	                .antMatchers("/login").permitAll()
 	                
@@ -64,13 +67,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	            .and()
 	                .exceptionHandling().accessDeniedPage("/login");	        	        
 	    }
- 
-	/*
+	 /*
+	
 	  // 인증을 위한 AuthenticationManager생성을 위해
 	  @Override 
 	  public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		  auth.userDetailsService(memberService).passwordEncoder(passwordEncoder());		
 	  }
-	 */
+	   */
 	 
 }

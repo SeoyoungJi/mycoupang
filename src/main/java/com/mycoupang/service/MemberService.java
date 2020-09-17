@@ -48,12 +48,11 @@ public class MemberService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
 		
 		MemberVO member = MemberMapper.findMember(userid);
-	//	System.out.println("active: "+member.getActive());
-	//	System.out.println("userid: "+userid);
 		
 		if( member.getActive() == 0 ) { throw new UsernameNotFoundException("이메일 인증 후 로그인이 가능합니다."); }	
 		if( member.getUserid() == null ) { throw new UsernameNotFoundException("로그인 실패"); }
-		/*
+		
+	/*
 	  	List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 	 
 		if(("admin").equals(userid)) {
@@ -67,10 +66,21 @@ public class MemberService implements UserDetailsService{
 			 
 		*/
 		
-		 GrantedAuthority authority = new SimpleGrantedAuthority(Role.ADMIN.getValue());
+	//	 GrantedAuthority authority = new SimpleGrantedAuthority(member.getRole());
+		
+		 GrantedAuthority authority = null;
+		 
+		 if(("admin").equals(userid)) {
+			  authority = new SimpleGrantedAuthority("ROLE_ADMIN");
+		 }
+		 else {
+			 authority = new SimpleGrantedAuthority("ROLE_MEMBER");
+		 }
+		 
+		 System.out.println("role: "+authority);
 		 UserDetails userDetails = (UserDetails)new User(userid, member.getUserpw(), Arrays.asList(authority));
 		 
-		 return userDetails;
+		 return userDetails; //SpringSecurity에서 제공하는 UserDetails를 구현한 User를 반환
 	}
 
 	
