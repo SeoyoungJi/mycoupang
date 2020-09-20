@@ -16,4 +16,8 @@
 	select * from tb_user where userid = #{userid}
 </select>
 
+<update id="updateCode" parameterType="MemberVO">
+	update tb_user set code = #{code} where userid = #{userid}
+</update>
+
 </mapper>

@@ -14,11 +14,12 @@ public class MemberVO{
 	private String registerday;
 	private int active;
 	private String role;
+	private String code;
 	
 	public MemberVO() { }
 	
 	public MemberVO(String userno, String userid, String userpw, String name, String gender, String addr,
-			String hp, String email, String interest, String registerday, int active, String role) {
+			String hp, String email, String interest, String registerday, int active, String role, String code) {
 		this.userno = userno;
 		this.userid = userid;
 		this.userpw = userpw;
@@ -31,6 +32,7 @@ public class MemberVO{
 		this.registerday = registerday;
 		this.active = active;
 		this.role = role;
+		this.code = code;
 	}
     
 	public String getUserno() {
@@ -127,6 +129,14 @@ public class MemberVO{
 
 	public void setUserid(String userid) {
 		this.userid = userid;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
     
 	

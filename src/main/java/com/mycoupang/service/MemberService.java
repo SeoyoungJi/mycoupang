@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -19,14 +23,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.mycoupang.mapper.MemberMapper;
 import com.mycoupang.model.MemberVO;
 import com.mycoupang.security.Role;
+import com.mycoupang.util.SendMail;
 
 import lombok.AllArgsConstructor;
+import java.lang.String;
 
 @Service
 public class MemberService implements UserDetailsService{
 
 	@Autowired
 	MemberMapper MemberMapper;
+	
+	@Autowired
+	SendMail sendMail;
 	
 	public int idCheck(MemberVO member) {	
 		int check = MemberMapper.idCheck(member);	
@@ -35,13 +44,42 @@ public class MemberService implements UserDetailsService{
 	}
 	
 	@Transactional
-	public void register(MemberVO member) {
+	public void register(MemberVO member, HttpServletRequest request) throws Exception {
 
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		member.setUserpw(passwordEncoder.encode(member.getUserpw()));
 			
 		MemberMapper.register(member);
-				
+	
+		//이메일 인증을 위한 랜덤키 생성
+		Random random = new Random(); 
+		String certificationCode = "mycoupang";
+		
+		int num = 0;
+		
+		for(int i=0; i<7; i++) {
+			num = random.nextInt(9-0+1)+1; //0~9사이의 랜덤한 수 1개씩 생성
+			certificationCode += num;
+		}
+		
+		member.setCode(certificationCode);
+		System.out.println("확인용 certificationCode : "+certificationCode);
+		
+		HttpSession session = request.getSession();
+		
+		try {
+			int updateCode = MemberMapper.updateCode(member.getUserid());
+			
+			if(updateCode == 1) {
+				sendMail.mail(member, certificationCode);
+				session.setAttribute("certificationCode", certificationCode); //인증코드를 세션에 저장
+			}				
+		}	
+		 catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}				
+	
 	}
 	
 	@Override

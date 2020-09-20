@@ -1,5 +1,7 @@
 package com.mycoupang.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mycoupang.model.MemberVO;
 import com.mycoupang.service.MemberService;
@@ -42,8 +45,9 @@ public class MemberController {
 	
 	//회원가입 처리
 	@PostMapping("/register")
-	public String register(MemberVO member) {
-		MemberService.register(member);
+	public String register(MemberVO member, RedirectAttributes attr, HttpServletRequest request) throws Exception {
+		MemberService.register(member, request);
+		attr.addFlashAttribute("msg", "가입시 사용한 이메일로 인증 후 로그인이 가능합니다.");
 		return "redirect:/login";
 	}
 	
