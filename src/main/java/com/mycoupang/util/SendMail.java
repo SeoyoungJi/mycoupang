@@ -78,8 +78,8 @@ public class SendMail {
     	
     	Multipart multi = (Multipart) msg.getContent();
     	  	
-    	String html = "<html><head></head><body><div style=\"margin: 0 auto; margin-top: 80px;\">	\r\n" + 
-    				  "<div style=\"padding: 0 0 30px 870px;  margin: auto;\">\r\n" + 
+    	String html = "<html><head></head><body><div style=\"margin: 0 auto; margin-top: 10px;\">	\r\n" + 
+    				  "<div style=\"padding: 0 0 30px 680px;  margin: auto;\">\r\n" + 
     			      "	<img src=\"cid:mailIcon\" height=\"200px\" width=\"200px\"/>					\r\n" + 
     			      "	</div>\r\n" + 
     			      "	<table style = \"border-top: 4px solid black; border-bottom: 4px solid black; max-width: 679px; margin: auto; width: 100%;   font-family: Roboto,'나눔고딕',NanumGothic,'맑은고딕',Malgun Gothic,'돋움',Dotum,Helvetica,'Apple SD Gothic Neo',Sans-serif;\">\r\n" + 
@@ -99,8 +99,8 @@ public class SendMail {
     			      "	\r\n" + 
     			      "	<tr>\r\n" + 
     			      "	<td width=\"39\"></td>\r\n" + 
-    			      " <td width=\"600\" style = \"font-size: 15px; color: #666;word-break: keep-all; padding: 25px 0; text-decoration: underline; \">\r\n" + 
-    			      "		   				인증하고 마이쿠팡의 모든 서비스 이용하러 가기 \r\n" + 
+    			      " <td width=\"600\" style = \"font-size: 18px; color: #666; word-break: keep-all; padding: 25px 0; text-decoration: underline; \">\r\n" + 
+    			      "	<a href='http://localhost:9090/mycoupang/emailConfirm?userid="+member.getUserid()+"&code="+member.getCode()+"' target='_blenk'>인증하고 마이쿠팡의 모든 서비스 이용하러 가기 </a>\r\n" + 
     			      "	</td>\r\n" + 
     			      "	<td width=\"39\"></td>\r\n" + 
     			      " <tr>\r\n" + 

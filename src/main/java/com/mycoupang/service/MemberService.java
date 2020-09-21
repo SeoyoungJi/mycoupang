@@ -63,12 +63,12 @@ public class MemberService implements UserDetailsService{
 		}
 		
 		member.setCode(certificationCode);
-		System.out.println("확인용 certificationCode : "+certificationCode);
+		System.out.println("확인용 certificationCode : "+member.getCode());
 		
 		HttpSession session = request.getSession();
 		
 		try {
-			int updateCode = MemberMapper.updateCode(member.getUserid());
+			int updateCode = MemberMapper.updateCode(member);
 			
 			if(updateCode == 1) {
 				sendMail.mail(member, certificationCode);
@@ -79,8 +79,17 @@ public class MemberService implements UserDetailsService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}				
-	
 	}
+	
+	
+	public int updateActive(MemberVO member) {
+		
+		int count = MemberMapper.updateActive(member);
+		
+		return count;
+	}
+	
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {

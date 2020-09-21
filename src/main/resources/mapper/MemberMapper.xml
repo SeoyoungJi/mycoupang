@@ -20,4 +20,8 @@
 	update tb_user set code = #{code} where userid = #{userid}
 </update>
 
+<update id="updateActive" parameterType="MemberVO">
+	update tb_user set active = "1" where userid = #{userid} and code = #{code}
+</update>
+
 </mapper>

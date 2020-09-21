@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -65,10 +67,13 @@ public class MemberController {
 		return "/main";
 	}
 	
-	//인증메일 폼 테스트
-	@GetMapping("/mail")
-	public String mail() {
+	//메일 인증
+	@GetMapping("/emailConfirm")
+	public String emailConfirm(MemberVO member) {
+			
+			MemberService.updateActive(member);
 		
-		return "/mail";
+			return "/login/login";
+		
 	}
 }
