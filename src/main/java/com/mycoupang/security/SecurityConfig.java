@@ -44,9 +44,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        http.authorizeRequests()
 	                // 권한 적용
 	                .antMatchers("/upload").hasAnyAuthority("ROLE_ADMIN")
+	                .antMatchers("/checkInfo").authenticated()
 	                .antMatchers("/**").permitAll()
-	                .antMatchers("/login").permitAll()
-	                
+	                .antMatchers("/login").permitAll()	                
 	             .and() // 로그인
 	                .formLogin()
 	                .loginPage("/login") //로그인 페이지

@@ -24,4 +24,16 @@
 	update tb_user set active = "1" where userid = #{userid} and code = #{code}
 </update>
 
+<select id="findpw" parameterType="MemberVO" resultType="java.lang.Integer">
+	select count(*) from tb_user where name = #{name} and email = #{email}
+</select>
+
+<update id="updatePw" parameterType="MemberVO">
+	update tb_user set userpw = #{userpw} where email = #{email}
+</update>
+
+<select id="checkInfo" parameterType="java.lang.String" resultType="java.lang.Integer">
+	select count(*) from tb_user where userpw = #{userpw}
+</select>
+
 </mapper>

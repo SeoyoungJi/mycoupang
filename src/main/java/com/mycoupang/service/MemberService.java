@@ -6,12 +6,14 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,7 +28,10 @@ import com.mycoupang.security.Role;
 import com.mycoupang.util.SendMail;
 
 import lombok.AllArgsConstructor;
+
+import java.io.IOException;
 import java.lang.String;
+import java.security.Principal;
 
 @Service
 public class MemberService implements UserDetailsService{
@@ -38,8 +43,9 @@ public class MemberService implements UserDetailsService{
 	SendMail sendMail;
 	
 	public int idCheck(MemberVO member) {	
+		
 		int check = MemberMapper.idCheck(member);	
-		System.out.println("service:"+check); 
+		
 		return check;
 	}
 	
@@ -63,6 +69,7 @@ public class MemberService implements UserDetailsService{
 		}
 		
 		member.setCode(certificationCode);
+	//	member.setCode(passwordEncoder.encode(member.getCode()));
 		System.out.println("확인용 certificationCode : "+member.getCode());
 		
 		HttpSession session = request.getSession();
@@ -90,6 +97,14 @@ public class MemberService implements UserDetailsService{
 	}
 	
 	
+	public MemberVO findMember(String userid) {
+		
+		MemberVO member = MemberMapper.findMember(userid);
+		
+		return member;
+	}
+	
+	
 	
 	@Override
 	public UserDetails loadUserByUsername(String userid) throws UsernameNotFoundException {
@@ -97,23 +112,7 @@ public class MemberService implements UserDetailsService{
 		MemberVO member = MemberMapper.findMember(userid);
 		
 		if( member.getActive() == 0 ) { throw new UsernameNotFoundException("이메일 인증 후 로그인이 가능합니다."); }	
-		if( member.getUserid() == null ) { throw new UsernameNotFoundException("로그인 실패"); }
-		
-	/*
-	  	List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-	 
-		if(("admin").equals(userid)) {
-			authorities.add(new SimpleGrantedAuthority(Role.ADMIN.getValue())); //롤 부여
-		}
-		else {
-			authorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
-		}
-		
-		return new User(member.getUserid(), member.getUserpw(), authorities); //SpringSecurity에서 제공하는 UserDetails를 구현한 User를 반환
-			 
-		*/
-		
-	//	 GrantedAuthority authority = new SimpleGrantedAuthority(member.getRole());
+		if( member.getUserid() == null ) { throw new UsernameNotFoundException("로그인 실패"); }		
 		
 		 GrantedAuthority authority = null;
 		 
@@ -129,6 +128,61 @@ public class MemberService implements UserDetailsService{
 		 
 		 return userDetails; //SpringSecurity에서 제공하는 UserDetails를 구현한 User를 반환
 	}
+	
+	//비밀번호 재설정 메일 발송
+	public int findpw(MemberVO member) throws IOException {
+		
+		int count = MemberMapper.findpw(member);
+
+		if(count == 1) {	
+			
+			try {
+				sendMail.findpwMail(member);				
+			} catch (MessagingException e ) {		
+				e.printStackTrace();
+			} 
+		}
+	
+		return count;
+	}
+	
+	//비밀번호 재설정
+	public int updatePw(MemberVO member) {
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		member.setUserpw(passwordEncoder.encode(member.getUserpw()));
+		
+		int count = MemberMapper.updatePw(member);
+		System.out.println("비밀번호변경 "+count);
+		System.out.println("비밀번호변경 "+member.getEmail());
+		return count;
+	}
+	
+	
+	
+	//회원정보 조회,변경을 위한 비밀번호 확인
+	public int checkInfo(String userpw) {	
+		
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+	
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal(); 
+		
+		UserDetails userDetails = (UserDetails)principal;
+	
+		String encodedPassword = MemberMapper.findMember(userDetails.getUsername()).getUserpw();
+		
+		System.out.println("userpw "+userpw);
+		System.out.println("encodedPassword "+encodedPassword);
+		int check = 0;
+		
+		
+		if(passwordEncoder.matches(userpw, encodedPassword )){
+			check = 1;
+		}
+		System.out.println("check "+check);	
+		return check;
+	}
+	
 
 	
 }

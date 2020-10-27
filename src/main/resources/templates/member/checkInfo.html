@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layouts/layout}">
+<meta charset="UTF-8">
+<head></head>
+<div layout:fragment="content" style="background-color: #f5f5f5; margin-bottom: -17px;">
+
+<style type="text/css">
+	#mainContainer {
+		margin: 0 auto;
+		margin-top: -17px;		
+		width: 1030px;	
+	}
+	
+	#secondContainer {
+		background-color: white;
+		border: solid 1px #cccccc;
+		padding: 60px 30px 400px 30px;
+		margin: 0 -15px;
+	}
+	
+	.table{
+		padding: 14px 30px;
+		border-top: 2px solid #969696;
+		border-bottom: 1px solid #ddd;
+		font-size: 10pt;
+		margin-top: 13px;
+	}
+	
+	.table tr th {
+		background-color: #eef1f8;
+		text-align: center;		
+		width: 210px;
+	}
+	
+	.table tr td {
+		padding-left: 30px;
+	}
+	
+	#inputPW {
+		width: 200px;
+		height: 22px;
+    	padding: 0 5px;
+    	margin: -5px;
+	}
+	
+	#btnDiv {
+		padding-left: 400px;
+    	margin-top: 20px;
+	}
+	
+	.btn {
+		color: white;
+		margin: 5px;
+		font-size: 14px;
+	}
+	
+	#submitBtn {
+		background-color: #0e9ae9;
+		border: 1px solid #0185da;
+	}
+	
+	#cancelBtn {
+		background-color : #999ca5;
+		border: 1px solid #828282;
+	}
+</style>
+
+<script type="text/javascript">
+
+
+	function enter(){
+		var keyCode = window.event.keyCode;
+		if(keyCode == 13){
+			goCheck();
+		}
+	}
+
+	function goCheck(){
+		
+		var checkForm = document.checkForm;
+		var userpw = $("#inputPW").val().trim();
+		
+		if(userpw == ""){
+			alert("비밀번호를 입력해주세요.");
+			$("#inputPW").focus();
+		}
+		else {
+			checkForm.submit();
+		}
+	}
+
+</script>
+
+<div id="mainContainer" class="container">		
+	<div id="secondContainer">
+	<h2>회원정보확인</h2>
+	<span style="color:#cccccc; font-size: 10pt"><strong th:text="${member.userid}" style="color:#0185da;"></strong>님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한번 확인 합니다.</span>
+	
+		<form th:action="@{/checkInfoEnd}" id="checkForm" name="checkForm" method="post">
+			<table class="table">
+				<tr>
+					<th>이메일</th>
+					<td><span style="color:#666666;" name="email" th:text="${member.email}"></span></td>
+				</tr>
+				
+				<tr>
+					<th>비밀번호</th>
+					<td><input type="password" id="inputPW" name="userpw"/></td>
+				</tr>				
+			</table>
+			
+			<div id="btnDiv">
+				<input type="button" value="확인" id="submitBtn" class="btn" onclick="goCheck();"/>
+				<input type="reset" value="취소" id="cancelBtn" class="btn" />
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+</html>

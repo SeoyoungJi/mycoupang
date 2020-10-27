@@ -16,9 +16,10 @@
 					<ul>
 						<li sec:authorize="isAnonymous()"><a href="login">로그인</a></li>
 						<li sec:authorize="isAnonymous()"><a href="register">회원가입</a></li>
+						<li sec:authorize="isAuthenticated()"><h6 th:text="${#authentication.name}"></h6></li>
 						<li sec:authorize="isAuthenticated()"><a href="/mycoupang/logout">로그아웃</a></li>
 						<li sec:authorize="hasRole('ROLE_ADMIN')"><a href="">관리자</a></li>
-						<li>고객센터</li>
+						<li sec:authorize="isAnonymous()"><a href="resource">PC자원</a></li>
 					</ul>
 				</div>
 			</div>
@@ -33,7 +34,7 @@
 
 			<div style="height: 80%; display: block;">
 				<div id="logoDiv">
-					<img src="img/mycoupangLOGO.JPG" height="55px" width="174px" onclick="location.href='main'"/>
+					<img src="img/mycoupangLOGO.JPG" height="55px" width="174px" onclick="location.href='main'" style="cursor: pointer;"/>
 				</div>
 
 				<div id="searchDiv">
@@ -52,7 +53,7 @@
 					<i class="fa fa-shopping-cart fa2 hicon"></i> <span class="iconText">장바구니</span>
 				</div>
 
-				<div class="iconDiv">
+				<div class="iconDiv" onclick="location.href='/mycoupang/checkInfo'">
 					<i class="fa fa-user fa2 hicon"></i> <span class="iconText">마이쿠팡</span>
 				</div>
 			</div>

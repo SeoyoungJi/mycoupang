@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layouts/layout}">
+<meta charset="UTF-8">
+<head></head>
+<div layout:fragment="content" style="background-color: #f5f5f5; margin-bottom: -17px;">
+
+<style type="text/css">
+	#mainContainer {
+		margin: 0 auto;
+		margin-top: -17px;		
+		width: 1030px;	
+	}
+	
+	#secondContainer {
+		background-color: white;
+		border: solid 1px #cccccc;
+		padding: 60px 30px 400px 30px;
+		margin: 0 -15px;
+	}
+	
+	.text {
+		color:#666666; 
+		font-size: 10pt;
+	}
+	
+	.error {
+		color: red;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+	
+	#success_pw2 {
+		color: #0062cc;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+	
+	.notice {
+		color: #d39e00;
+		font-size: 10pt;
+		font-weight: bold;
+	}
+	
+	.table{
+		padding: 14px 30px;
+		border-top: 2px solid #969696;
+		border-bottom: 1px solid #ddd;
+		font-size: 10pt;
+		margin-top: 23px;
+	}
+	
+	.table tr th {
+		background-color: #eef1f8;
+		text-align: center;		
+		width: 210px;
+		vertical-align: middle;
+	}
+	
+	.table tr td {
+		padding-left: 30px;
+	}
+	
+	.inputBox {
+		width: 200px;
+		height: 30px;
+    	padding: 0 5px;
+    	margin: -5px;
+    	border: solid 1px #ccc;
+    	margin: 5px 0 5px 0;
+	}
+	
+	#btnDiv {
+		padding-left: 400px;
+    	margin-top: 20px;
+	}
+	
+	.btn {
+		color: white;
+		margin: 5px;
+		font-size: 22px;
+	}
+	
+	#submitBtn {
+		background-color: #0e9ae9;
+		border: 1px solid #0185da;
+	}
+		
+</style>
+
+<script type="text/javascript">
+
+	var pwCheck = false;
+	
+	$(function(){
+		$("span.hide").css('display','none');
+		$("#pwCheck").attr("disabled", true);
+		
+		/* 비밀번호 유효성 검사 */		
+		$("#userpw").blur(function(){
+	
+			var regExp = /^[!@#$%^*+=-][A-Za-z0-9]{7,11}$/;
+			var bool = regExp.test($(this).val());
+			
+			if(bool != true){
+				$("#error_pw").css('display','');
+				$(this).val(""); 
+				$(this).focus();
+			}
+			else {
+				$("#error_pw").css('display','none');
+				$("input#pwCheck").attr("disabled", false);
+				$("input#pwCheck").focus();
+			}
+			
+		});
+		
+		/* 비밀번호 일치 검사 */
+		$("#pwCheck").blur(function(){
+			if($("#userpw").val() != $("#pwCheck").val()){
+				$("#error_pw2").css('display','');
+				$("#success_pw2").css('display','none');
+				pwCheck = false;
+			} 
+			else {
+				$("#error_pw2").css('display','none');
+				$("#success_pw2").css('display','');
+				pwCheck = true;
+			}
+		});
+	});
+
+	function enter(){
+		var keyCode = window.event.keyCode;
+		if(keyCode == 13){
+			goChange();
+		}
+	}
+
+	function goChange(){
+		
+		var changepwForm = document.changepwForm;		
+		var userpw = $("#userpw").val().trim();
+		var pwCheck = $("#pwCheck").val().trim();
+		
+		if(userpw == ""){
+			alert("비밀번호를 입력하세요.");
+			$("#userpw").focus();
+			return;
+		}
+        if(pwCheck == false){
+			alert("비밀번호를 다시 확인해주세요.");
+			$("#pwCheck").focus();
+			return;
+		}
+        
+        changepwForm.submit();
+	}
+
+</script>
+
+<div id="mainContainer" class="container">		
+	<div id="secondContainer">
+	<h2>비밀번호 변경</h2>
+	<span class="text"><strong style="color:#ff6c02">* </strong>변경할 비밀번호를 입력해주세요.</span>
+	
+		<form th:action="@{changepwEnd}" id="changepwForm" name="changepwForm" method="post">
+			<table class="table">
+				<tr>
+					<th>새 비밀번호</th>
+					<td><input type="password" class="inputBox" id="userpw" name="userpw"/><br/>
+						<span class="notice">*특수문자로 시작하고 연속되지 않은 숫자+영문 조합의 8~12글자</span><br/>
+						<span class="hide error" id="error_pw">비밀번호 형식이 일치하지 않습니다.</span>
+					</td>
+				</tr>
+				
+				<tr>
+					<th>새 비밀번호 확인</th>
+					<td><input type="password" class="inputBox" id="pwCheck"/><br/>
+						<span class="hide error" id="error_pw2">비밀번호가 일치하지 않습니다.</span>
+						<span class="hide" id="success_pw2">비밀번호가 일치합니다.</span>			
+					</td>
+				</tr>				
+			</table>
+			
+			<div id="btnDiv">
+				<input type="hidden" name="email" th:value="${email}"/>		
+				<input type="button" value="비밀번호 변경" id="submitBtn" class="btn" onclick="goChange();"/>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+</html>

@@ -195,14 +195,15 @@ $('#scrollDiv').scrollspy({ target: '.navbar' });
 				<div class="col-7">
 					<div id="productTitle" class="row">
 						<div class="col-10">
-							<span style="font-size: 9pt; color: #346aff;">깨끗한 나라</span><br/>
-							<span style="font-size: 14pt; font-weight: bold; display: inline-block; width: 380px;">깨끗한나라 3겹 데코 순수 프리미엄 천연펄프 롤화장지 30m</span><br/>
+							<span style="font-size: 9pt; color: #346aff;" th:text="${product.product_brand}"></span><br/>
+							<span style="font-size: 14pt; font-weight: bold; display: inline-block; width: 380px;" th:text="${product.product_name}"></span><br/>
 							<span style="font-size: 8pt; color: #346aff">100개의 상품평</span>
 						</div>
 						<div class="col-1">	
 							<img src="img/icon/likeIcon.JPG" class="likeIcon"/>							
 						</div>
 						<div class="col-1">								
+						
 							<img src="img/icon/dislikeIcon.jpg" class="likeIcon"/>
 						</div>
 					</div>

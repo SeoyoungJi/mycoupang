@@ -14,7 +14,12 @@ public interface MemberMapper {
 	MemberVO findMember (String userid);
 	
 	int updateCode (MemberVO member);
-
 	
 	int updateActive (MemberVO member);
+	
+	int findpw (MemberVO member);
+	
+	int updatePw (MemberVO member);
+	
+	int checkInfo (String userpw);
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{layouts/layout}">
+<meta charset="UTF-8">
+<head></head>
+<div layout:fragment="content" style="background-color: #f5f5f5; margin-bottom: -17px;">
+
+<style type="text/css">
+
+	#mainContainer {
+		margin: 0 auto;
+		margin-top: -17px;		
+		width: 1030px;	
+	}
+	
+	#secondContainer {
+		background-color: white;
+		border: solid 1px #cccccc;
+		padding: 60px 30px 400px 30px;
+		margin: 0 -15px;
+	}
+	
+	.table{
+		padding: 14px 30px;
+		border-top: 2px solid #969696;
+		border-bottom: 1px solid #ddd;
+		font-size: 10pt;
+		margin-top: 13px;
+	}
+	
+	.table tr th {
+		background-color: #eef1f8;
+		text-align: center;		
+		width: 210px;
+	}
+	
+	.table tr td {
+		padding-left: 30px;
+	}
+
+	
+</style>
+
+
+<div id="mainContainer" class="container">		
+	<div id="secondContainer">
+	<h2>나의 PC 자원</h2>
+	
+			<table class="table">
+				<tr>
+					<th>전체 디스크 공간</th>
+					<td><span style="color:#666666;" th:text="${diskMap.totalSpace}"></span> GB</td>
+				</tr>
+				
+				<tr>
+					<th>사용 중인 디스크 공간</th>
+					<td><span style="color:#666666;" th:text="${diskMap.usingSpace}"></span> GB</td>
+				</tr>		
+				
+				<tr>
+					<th>사용 가능한 디스크 공간</th>
+					<td><span style="color:#666666;" th:text="${diskMap.usableSpace}"></span> GB</td>
+				</tr>
+				
+				<tr>
+					<th>CPU 사용량</th>
+					<td><span style="color:#666666;" th:text="${cpu}"></span> %</td>
+				</tr>	
+				
+				<tr>
+					<th>전체 메모리</th>
+					<td><span style="color:#666666;" th:text="${memoryMap.totalMemory}"></span> MB</td>
+				</tr>
+				
+				<tr>
+					<th>사용 중인 메모리</th>
+					<td><span style="color:#666666;" th:text="${memoryMap.freeMemory}"></span> MB</td>
+				</tr>
+				
+				<tr>
+					<th>사용 가능한 메모리</th>
+					<td><span style="color:#666666;" th:text="${memoryMap.usedMemory}"></span> MB</td>
+				</tr>
+			</table>
+			
+			
+		</form>
+	</div>
+</div>
+</div>
+
+</html>
